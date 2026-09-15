@@ -116,4 +116,4 @@ FUNCTION Transfer(sender, receiver, amount)
 
 END FUNCTION
 
-END
+Finish
