@@ -9,17 +9,18 @@ SET withdrawals = 0
 SET average = 100
 SET lastWithdrawTime = 0
 
-// Example actions
+// Calling Funtions for execution
 CALL Deposit(alice, 50)
 CALL Withdraw(alice, 30)
 CALL Transfer(alice, bob, 100)
 
+
 FUNCTION Deposit(account, amount)
 
-    // Step 1: Validate amount
+    // Step 1: We validate amount
     IF amount <= 0 THEN
         PRINT "Invalid amount"
-        RETURN
+        RETURN "Rejected"
     END IF
 
     // Step 2: Add money
@@ -38,13 +39,13 @@ FUNCTION Withdraw(account, amount)
     // Step 1: Validate amount
     IF amount <= 0 THEN
         PRINT "Invalid amount"
-        RETURN
+        RETURN "Rejected"
     END IF
 
     // Step 2: Rule 1 — Not enough money
     IF amount > account THEN
         PRINT "Blocked: Insufficient funds"
-        RETURN
+        RETURN "Rejected"
     END IF
 
     // Step 3: Rule 2 — Too many withdrawals in 10 seconds
@@ -54,13 +55,13 @@ FUNCTION Withdraw(account, amount)
     END IF
     IF withdrawals >= 3 THEN
         PRINT "Blocked: Too many withdrawals"
-        RETURN
+        RETURN "Rejected"
     END IF
 
     // Step 4: Rule 3 — Unusual spending spike
     IF amount > (5 * average) THEN
         PRINT "Blocked: Unusual spending"
-        RETURN
+        RETURN "Rejected"
     END IF
 
     // Step 5: All checks passed — execute
@@ -79,13 +80,13 @@ FUNCTION Transfer(sender, receiver, amount)
     // Step 1: Validate amount
     IF amount <= 0 THEN
         PRINT "Invalid amount"
-        RETURN
+        RETURN "Rejected"
     END IF
 
     // Step 2: Rule 1 — Not enough money
     IF amount > sender THEN
         PRINT "Blocked: Insufficient funds"
-        RETURN
+        RETURN "Rejected"
     END IF
 
     // Step 3: Rule 2 — Too many withdrawals in 10 seconds
@@ -95,13 +96,13 @@ FUNCTION Transfer(sender, receiver, amount)
     END IF
     IF withdrawals >= 3 THEN
         PRINT "Blocked: Too many withdrawals"
-        RETURN
+        RETURN "Rejected"
     END IF
 
     // Step 4: Rule 3 — Unusual spending spike
     IF amount > (5 * average) THEN
         PRINT "Blocked: Unusual spending"
-        RETURN
+        RETURN "Rejected"
     END IF
 
     // Step 5: All checks passed — execute
