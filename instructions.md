@@ -1,6 +1,6 @@
 Imagine a system that manages bank accounts for users like Alice and Bob. Its job is to process money movements—like putting money in, taking money out, or sending money to someone else—while automatically blocking suspicious activity or fraud.
 
-Here are the basic rules:
+Here are the basic rules -->
 
     Not Enough Money: You cannot take out or transfer more money than you actually have in your account.
 
